@@ -52,6 +52,9 @@
 #else
   #define X_MIN_PIN                        P1_29  // X-
   #define X_MAX_PIN                        P1_28  // X+
+
+#define I_MIN_PIN X_MIN_PIN
+#define J_MIN_PIN X_MIN_PIN
 #endif
 
 #ifdef Y_STALL_SENSITIVITY
@@ -125,16 +128,30 @@
   #define Z_CS_PIN                         P1_10
 #endif
 
-#define E0_STEP_PIN                        P2_13
-#define E0_DIR_PIN                         P0_11
-#define E0_ENABLE_PIN                      P2_12
-#ifndef E0_CS_PIN
-  #define E0_CS_PIN                        P1_08
+#define I_STEP_PIN P2_13
+#define I_DIR_PIN P0_11
+#define I_ENABLE_PIN P2_12
+#ifndef I_CS_PIN
+#define I_CS_PIN P1_08
 #endif
 
-#ifndef E1_CS_PIN
-  #define E1_CS_PIN                        P1_01
+#define J_STEP_PIN P0_01
+#define J_DIR_PIN P0_00
+#define J_ENABLE_PIN P0_10
+#ifndef J_CS_PIN
+#define J_CS_PIN P1_01
 #endif
+
+// #define E0_STEP_PIN                        P2_13
+// #define E0_DIR_PIN                         P0_11
+// #define E0_ENABLE_PIN                      P2_12
+// #ifndef E0_CS_PIN
+//   #define E0_CS_PIN                        P1_08
+// #endif
+
+// #ifndef E1_CS_PIN
+//   #define E1_CS_PIN                        P1_01
+// #endif
 
 //
 // Software SPI pins for TMC2130 stepper drivers
