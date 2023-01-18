@@ -99,7 +99,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 0
+#define SERIAL_PORT -1
 
 /**
  * Serial Port Baud Rate
@@ -121,7 +121,7 @@
  * Currently Ethernet (-2) is only supported on Teensy 4.1 boards.
  * :[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-//#define SERIAL_PORT_2 -1
+#define SERIAL_PORT_2 0
 //#define BAUDRATE_2 250000   // :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000] Enable to override BAUDRATE
 
 /**
@@ -1087,7 +1087,7 @@
 // Specify here all the endstop connectors that are connected to any endstop or probe.
 // Almost all printers will be using one per axis. Probes will use one or more of the
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
-#define USE_XMIN_PLUG
+// #define USE_XMIN_PLUG
 #define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
 #define USE_IMIN_PLUG
@@ -1096,7 +1096,7 @@
 //#define USE_UMIN_PLUG
 //#define USE_VMIN_PLUG
 //#define USE_WMIN_PLUG
-//#define USE_XMAX_PLUG
+#define USE_XMAX_PLUG
 //#define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
 //#define USE_IMAX_PLUG
@@ -1157,8 +1157,8 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define X_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Z_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define I_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define J_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -1166,7 +1166,7 @@
 #define U_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define V_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define W_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
+#define X_MAX_ENDSTOP_INVERTING true // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define I_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -1223,7 +1223,7 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 44.44, 44.44, 80, 8.89, 8.89 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 22.22, 22.22, 80, 8.89, 8.89 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1662,7 +1662,7 @@
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
 // :{ 0:'Low', 1:'High' }
 #define X_ENABLE_ON 0
-#define Y_ENABLE_ON 0
+#define Y_ENABLE_ON 1
 #define Z_ENABLE_ON 0
 // #define E_ENABLE_ON 0 // For all extruders
 #define I_ENABLE_ON 0
@@ -1697,7 +1697,7 @@
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false
 #define INVERT_Y_DIR true
-#define INVERT_Z_DIR false
+#define INVERT_Z_DIR true
 #define INVERT_I_DIR false
 #define INVERT_J_DIR false
 //#define INVERT_K_DIR false
@@ -1736,7 +1736,7 @@
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
+#define X_HOME_DIR 1
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
 #define I_HOME_DIR -1
@@ -1749,16 +1749,16 @@
 // @section geometry
 
 // The size of the printable area
-#define X_BED_SIZE 400
-#define Y_BED_SIZE 400
+#define X_BED_SIZE 220
+#define Y_BED_SIZE 480
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
-#define Z_MIN_POS 0
+#define Z_MIN_POS -120
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 30
+#define Z_MAX_POS 120
 #define I_MIN_POS -3600
 #define I_MAX_POS 3600
 #define J_MIN_POS -3600
@@ -1786,7 +1786,7 @@
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
 #define MIN_SOFTWARE_ENDSTOP_X
 #define MIN_SOFTWARE_ENDSTOP_Y
-#define MIN_SOFTWARE_ENDSTOP_Z
+// #define MIN_SOFTWARE_ENDSTOP_Z
 #define MIN_SOFTWARE_ENDSTOP_I
 #define MIN_SOFTWARE_ENDSTOP_J
 #define MIN_SOFTWARE_ENDSTOP_K
@@ -1800,7 +1800,7 @@
 #if ENABLED(MAX_SOFTWARE_ENDSTOPS)
 #define MAX_SOFTWARE_ENDSTOP_X
 #define MAX_SOFTWARE_ENDSTOP_Y
-#define MAX_SOFTWARE_ENDSTOP_Z
+// #define MAX_SOFTWARE_ENDSTOP_Z
 #define MAX_SOFTWARE_ENDSTOP_I
 #define MAX_SOFTWARE_ENDSTOP_J
 #define MAX_SOFTWARE_ENDSTOP_K
@@ -2153,7 +2153,7 @@
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)
-#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (4*60), 100, 100 }
+#define HOMING_FEEDRATE_MM_M { 5000, 5000, 500, 500, 500 }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS

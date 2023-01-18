@@ -1119,7 +1119,7 @@
 //#define MULTI_NOZZLE_DUPLICATION
 
 // By default pololu step drivers require an active high signal. However, some high power drivers require an active low signal as step.
-#define INVERT_X_STEP_PIN false
+#define INVERT_X_STEP_PIN true
 #define INVERT_Y_STEP_PIN false
 #define INVERT_Z_STEP_PIN false
 #define INVERT_I_STEP_PIN false
@@ -1135,7 +1135,7 @@
  * Set DISABLE_INACTIVE_? 'true' to shut down axis steppers after an idle period.
  * The Deactive Time can be overridden with M18 and M84. Set to 0 for No Timeout.
  */
-#define DEFAULT_STEPPER_DEACTIVE_TIME 120
+#define DEFAULT_STEPPER_DEACTIVE_TIME 0
 #define DISABLE_INACTIVE_X true
 #define DISABLE_INACTIVE_Y true
 #define DISABLE_INACTIVE_Z true  // Set 'false' if the nozzle could fall onto your printed part!
@@ -2370,7 +2370,7 @@
  *
  * Override the default value based on the driver type set in Configuration.h.
  */
-//#define MINIMUM_STEPPER_PULSE 2
+#define MINIMUM_STEPPER_PULSE 4
 
 /**
  * Maximum stepping rate (in Hz) the stepper driver allows
@@ -2780,8 +2780,8 @@
     #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
     #define Z_CHAIN_POS      -1
-    //#define Z_INTERPOLATE  true
-    //#define Z_HOLD_MULTIPLIER 0.5
+    #define Z_INTERPOLATE  true
+    #define Z_HOLD_MULTIPLIER 0.75
   #endif
 
   #if AXIS_IS_TMC_CONFIG(Z2)
@@ -2820,8 +2820,8 @@
     #define I_MICROSTEPS    16
     #define I_RSENSE         0.11
     #define I_CHAIN_POS     -1
-    //#define I_INTERPOLATE  true
-    //#define I_HOLD_MULTIPLIER 0.5
+    #define I_INTERPOLATE  true
+    #define I_HOLD_MULTIPLIER 0.25
   #endif
 
   #if AXIS_IS_TMC_CONFIG(J)
@@ -2830,8 +2830,8 @@
     #define J_MICROSTEPS    16
     #define J_RSENSE         0.11
     #define J_CHAIN_POS     -1
-    //#define J_INTERPOLATE  true
-    //#define J_HOLD_MULTIPLIER 0.5
+    #define J_INTERPOLATE  true
+    #define J_HOLD_MULTIPLIER 0.25
   #endif
 
   #if AXIS_IS_TMC_CONFIG(K)
@@ -2980,7 +2980,7 @@
    * The default SW SPI pins are defined the respective pins files,
    * but you can override or define them here.
    */
-  //#define TMC_USE_SW_SPI
+  #define TMC_USE_SW_SPI
   //#define TMC_SW_MOSI       -1
   //#define TMC_SW_MISO       -1
   //#define TMC_SW_SCK        -1
@@ -3217,7 +3217,7 @@
    * Enable M122 debugging command for TMC stepper drivers.
    * M122 S0/1 will enable continuous reporting.
    */
-  //#define TMC_DEBUG
+  #define TMC_DEBUG
 
   /**
    * You can set your own advanced settings by filling in predefined functions.

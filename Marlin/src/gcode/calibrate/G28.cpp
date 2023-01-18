@@ -410,12 +410,12 @@ void GcodeSuite::G28() {
     const bool seenR = parser.seenval('R');
     const float z_homing_height = seenR ? parser.value_linear_units() : Z_HOMING_HEIGHT;
 
-    if (z_homing_height && (seenR || NUM_AXIS_GANG(doX, || doY, || TERN0(Z_SAFE_HOMING, doZ), || doI, || doJ, || doK, || doU, || doV, || doW))) {
-      // Raise Z before homing any other axes and z is not already high enough (never lower z)
-      if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPGM("Raise Z (before homing) by ", z_homing_height);
-      do_z_clearance(z_homing_height);
-      TERN_(BLTOUCH, bltouch.init());
-    }
+    // if (z_homing_height && (seenR || NUM_AXIS_GANG(doX, || doY, || TERN0(Z_SAFE_HOMING, doZ), || doI, || doJ, || doK, || doU, || doV, || doW))) {
+    //   // Raise Z before homing any other axes and z is not already high enough (never lower z)
+    //   if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPGM("Raise Z (before homing) by ", z_homing_height);
+    //   do_z_clearance(z_homing_height);
+    //   TERN_(BLTOUCH, bltouch.init());
+    // }
 
     // Diagonal move first if both are homing
     TERN_(QUICK_HOME, if (doX && doY) quick_home_xy());
@@ -482,18 +482,28 @@ void GcodeSuite::G28() {
             if (TERN1(POWER_LOSS_RECOVERY, !parser.seen_test('H'))) home_z_safely(); else homeaxis(Z_AXIS);
           #else
             homeaxis(Z_AXIS);
+            // set_axis_is_at_home(Z_AXIS);
+            // sync_plan_position();
           #endif
           probe.move_z_after_homing();
         }
       #endif
 
       SECONDARY_AXIS_CODE(
-        if (doI) homeaxis(I_AXIS),
-        if (doJ) homeaxis(J_AXIS),
-        if (doK) homeaxis(K_AXIS),
-        if (doU) homeaxis(U_AXIS),
-        if (doV) homeaxis(V_AXIS),
-        if (doW) homeaxis(W_AXIS)
+        // if (doI) homeaxis(I_AXIS),
+        // if (doJ) homeaxis(J_AXIS),
+        // if (doK) homeaxis(K_AXIS),
+        // if (doU) homeaxis(U_AXIS),
+        // if (doV) homeaxis(V_AXIS),
+        // if (doW) homeaxis(W_AXIS)
+
+        set_axis_is_at_home(I_AXIS),
+        set_axis_is_at_home(J_AXIS),
+        set_axis_is_at_home(K_AXIS),
+        set_axis_is_at_home(U_AXIS),
+        set_axis_is_at_home(V_AXIS),
+        set_axis_is_at_home(W_AXIS),
+        sync_plan_position()
       );
     #endif
 
