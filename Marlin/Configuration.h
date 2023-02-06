@@ -159,6 +159,8 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
+#define MINIMUM_STEPPER_PRE_DIR_DELAY 50000
+#define MINIMUM_STEPPER_POST_DIR_DELAY 50000
 
 #define X_DRIVER_TYPE  A4988
 #define Y_DRIVER_TYPE  A4988
@@ -1698,8 +1700,8 @@
 #define INVERT_X_DIR false
 #define INVERT_Y_DIR true
 #define INVERT_Z_DIR true
-#define INVERT_I_DIR false
-#define INVERT_J_DIR false
+#define INVERT_I_DIR true
+#define INVERT_J_DIR true
 //#define INVERT_K_DIR false
 //#define INVERT_U_DIR false
 //#define INVERT_V_DIR false
@@ -1750,7 +1752,7 @@
 
 // The size of the printable area
 #define X_BED_SIZE 220
-#define Y_BED_SIZE 480
+#define Y_BED_SIZE 485
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1787,8 +1789,8 @@
 #define MIN_SOFTWARE_ENDSTOP_X
 #define MIN_SOFTWARE_ENDSTOP_Y
 // #define MIN_SOFTWARE_ENDSTOP_Z
-#define MIN_SOFTWARE_ENDSTOP_I
-#define MIN_SOFTWARE_ENDSTOP_J
+// #define MIN_SOFTWARE_ENDSTOP_I
+// #define MIN_SOFTWARE_ENDSTOP_J
 #define MIN_SOFTWARE_ENDSTOP_K
 #define MIN_SOFTWARE_ENDSTOP_U
 #define MIN_SOFTWARE_ENDSTOP_V
@@ -1801,8 +1803,8 @@
 #define MAX_SOFTWARE_ENDSTOP_X
 #define MAX_SOFTWARE_ENDSTOP_Y
 // #define MAX_SOFTWARE_ENDSTOP_Z
-#define MAX_SOFTWARE_ENDSTOP_I
-#define MAX_SOFTWARE_ENDSTOP_J
+// #define MAX_SOFTWARE_ENDSTOP_I
+// #define MAX_SOFTWARE_ENDSTOP_J
 #define MAX_SOFTWARE_ENDSTOP_K
 #define MAX_SOFTWARE_ENDSTOP_U
 #define MAX_SOFTWARE_ENDSTOP_V
@@ -2153,7 +2155,7 @@
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)
-#define HOMING_FEEDRATE_MM_M { 5000, 5000, 500, 500, 500 }
+#define HOMING_FEEDRATE_MM_M { 100*60, 100*60, 500, 500, 500 }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
