@@ -1144,6 +1144,9 @@ void setup() {
     BOARD_PREINIT(); // Low-level init (before serial init)
   #endif
 
+  const pin_t pin = GET_PIN_MAP_PIN(28); //bottom camera light
+  extDigitalWrite(pin, 0); //disable on setup
+
   tmc_standby_setup();  // TMC Low Power Standby pins must be set early or they're not usable
 
   // Check startup - does nothing if bootloader sets MCUSR to 0
